@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
       case null:
-        return "";
+        return;
       case false:
         return (
           <li>
@@ -25,9 +26,12 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a href="/" className="left brand-logo">
+          <Link
+            to={this.props.auth ? "/surveys" : "/"}
+            className="left brand-logo"
+          >
             Survely
-          </a>
+          </Link>
           <ul className="right hide-on-med-and-down" id="nav-mobile">
             {this.renderContent()}
           </ul>
